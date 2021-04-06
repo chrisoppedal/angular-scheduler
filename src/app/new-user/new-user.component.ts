@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SchedulerService} from '../scheduler.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-new-user',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private schedulerService: SchedulerService, public router: Router) { }
+
+  onClickSubmit = (form) => {
+   console.log(form);
+   this.schedulerService.addUser(form);
+   console.log('users', this.schedulerService.users);
+   this.router.navigate(['/scheduler']);
+  };
 
   ngOnInit(): void {
-
   }
 }

@@ -1,19 +1,35 @@
-<h2 mat-dialog-title>Add User</h2>
+<h2 style="text-align: center;" mat-dialog-title>Add User</h2>
 <mat-dialog-content class="mat-typography">
-<!--  <h3>Develop across all platforms</h3>-->
-<!--  <p>Learn one way to build applications with Angular and reuse your code and abilities to build-->
-<!--    apps for any deployment target. For web, mobile web, native mobile and native desktop.</p>-->
-
-  <form #userForm = "ngForm" (ngSubmit) = "onClickSubmit(userForm.value)" >
-    <input type = "text" name = "emailid" placeholder = "emailid" ngModel>
-    <br/>
-    <input type = "password" name = "passwd" placeholder = "passwd" ngModel>
-    <br/>
-    <input type = "submit" value = "submit">
+  <form #userForm="ngForm" (ngSubmit)="onClickSubmit(userForm.value)" id="ngForm">
+    <div style="display: grid; grid-column-gap: 20px;grid-template-columns:1fr 1fr 1fr">
+      <mat-form-field appearance="standard">
+        <mat-label>First Name</mat-label>
+        <input matInput placeholder="first name" name="first" ngModel required>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Middle Name</mat-label>
+        <input matInput placeholder="middle name" name="middle" ngModel>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Last Name</mat-label>
+        <input matInput placeholder="last name" name="last" ngModel required>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Employee Number</mat-label>
+        <input matInput placeholder="employee number" name="number" ngModel required>
+      </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="email address" name="email" ngModel>
+      </mat-form-field>
+      <br/>
+    </div>
   </form>
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Add</button>
+  <button form="ngForm" mat-button [mat-dialog-close]="true" type="submit" value="submit" cdkFocusInitial
+          [disabled]="!userForm.form.valid">Add
+  </button>
 </mat-dialog-actions>

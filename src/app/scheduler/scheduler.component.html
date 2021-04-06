@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-form-field appearance="fill">
+      <mat-label>Employee</mat-label>
+      <mat-select name="title" (selectionChange)="onEmployeeChanged($event)">
+        <mat-option *ngFor="let user of schedulerService.users" [value]="user.first">
+          {{user.first + ' ' + user.last}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  <kendo-scheduler
+    [kendoSchedulerBinding]="events" [selectedDate]="selectedDate" style="height: 600px;">
+    <kendo-scheduler-day-view [startTime]="startTime"></kendo-scheduler-day-view>
+    <kendo-scheduler-week-view [startTime]="startTime"></kendo-scheduler-week-view>
+    <kendo-scheduler-month-view> </kendo-scheduler-month-view>
+    <kendo-scheduler-agenda-view> </kendo-scheduler-agenda-view>
+  </kendo-scheduler>
+</mat-card>

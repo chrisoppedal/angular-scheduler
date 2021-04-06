@@ -4,12 +4,8 @@
       <button mat-icon-button>
         <mat-icon (click)="snav.toggle()">menu</mat-icon>
       </button>
-      <h1>Scheduler</h1>
+      <h1 style="cursor: pointer" [routerLink]="'/home'">Scheduler</h1>
       <span class="menu-spacer"></span>
-      <a mat-button [routerLink]="'/create-account'"> This week </a>
-<!--      <mat-icon>calendar_today</mat-icon>-->
-      <a mat-button [routerLink]="'/create-contact'"> Today </a>
-      <a mat-button (click)="openAboutDialog()"> About </a>
       <span class="example-spacer" style="flex: 1 1 auto;"></span>
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="openUsersDialog()">
         <mat-icon>person_add</mat-icon>
@@ -17,10 +13,7 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <div mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="openUsersDialog()" style="text-align: center;cursor:pointer;
-    width: 10%;margin: auto;background-color: #e9ecef; border-radius: .4rem;margin-top: 15%;" class="mat-elevation-z4">
-    <mat-icon style="font-size: 80px;margin: 5%;margin-right: 55%;">person_add</mat-icon>
-  </div>
+  <router-outlet></router-outlet>
 
   <mat-sidenav-container
     class="example-sidenav-container"
@@ -32,7 +25,7 @@
       [fixedInViewport]="true"
       fixedTopGap="56">
       <mat-nav-list>
-        <a mat-list-item (click)="openUsersDialog()">Add</a>
+        <a mat-list-item (click)="openUsersDialog()">Add User <mat-icon style="margin-left: 10px;font-size: 21px;">person_add</mat-icon></a>
       </mat-nav-list>
     </mat-sidenav>
 

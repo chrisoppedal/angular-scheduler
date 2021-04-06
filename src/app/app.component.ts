@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {NewUserComponent} from './new-user/new-user.component';
-import {AboutComponent} from './about/about.component';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +13,6 @@ export class AppComponent {
 
   openUsersDialog = () => {
     const dialogRef = this.dialog.open(NewUserComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
-  openAboutDialog = () => {
-    const dialogRef = this.dialog.open(AboutComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

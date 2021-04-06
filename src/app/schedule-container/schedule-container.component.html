@@ -1,0 +1,8 @@
+<main class="grid-container">
+  <div class="scheduler">
+    <app-scheduler [events]="events"></app-scheduler>
+  </div>
+  <div class="event-form">
+    <app-event-form (newEvent)="onNewEvent($event)"></app-event-form>
+  </div>
+</main>

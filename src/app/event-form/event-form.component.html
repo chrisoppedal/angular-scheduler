@@ -1,0 +1,33 @@
+<mat-card>
+  <form *ngIf="schedulerService.users.length" (submit)="handleSubmit()" [formGroup]="eventForm" >
+    <h4 style="text-align: center;"><strong>Schedule shift</strong></h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Employee</mat-label>
+      <mat-select name="title" formControlName="title" required>
+        <mat-option *ngFor="let user of schedulerService.users" [value]="user.first + ' ' + user.last">
+          {{user.first + ' ' + user.last}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="input-holder">
+      <kendo-datetimepicker
+        formControlName="start"
+        placeholder="Start date"
+        required
+      ></kendo-datetimepicker>
+    </div>
+    <div class="input-holder">
+      <kendo-datetimepicker
+        formControlName="end"
+        placeholder="End date"
+        required
+      ></kendo-datetimepicker>
+    </div>
+
+    <button type="submit" [disabled]="eventForm.invalid" mat-raised-button color="primary">Schedule</button>
+  </form>
+
+  <div *ngIf="!schedulerService.users.length" aria-label="Example icon-button with share icon" (click)="openUsersDialog()" style="width: 100%;cursor:pointer">
+    <mat-icon style="font-size: 80px;width: 100%;margin-right: 8px;">person_add</mat-icon>
+  </div>
+</mat-card>
