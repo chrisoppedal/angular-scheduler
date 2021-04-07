@@ -1,8 +1,9 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SchedulerService} from '../scheduler.service';
 import {NewUserComponent} from '../new-user/new-user.component';
 import {MatDialog} from '@angular/material/dialog';
+import {DateWarningDialogComponent} from '../date-warning-dialog/date-warning-dialog.component';
 
 @Component({
   selector: 'app-event-form',
@@ -14,7 +15,7 @@ export class EventFormComponent implements OnInit {
   constructor(public schedulerService: SchedulerService, public dialog: MatDialog) {}
 
   eventForm: FormGroup = new FormGroup({
-    title: new FormControl(''),
+    title: new FormControl(),
     start: new FormControl(),
     end: new FormControl(),
   });
@@ -24,12 +25,15 @@ export class EventFormComponent implements OnInit {
 
   handleSubmit() {
     const event = this.eventForm.value;
-    console.log('this.eventForm', this.eventForm.value);
-    console.log(event);
-    this.newEvent.emit({
-      ...event,
-    });
-    this.eventForm.reset();
+    if (this.eventForm.value.start < this.eventForm.value.end) {
+      this.newEvent.emit({
+        ...event,
+      });
+      this.eventForm.reset();
+      this.eventForm.markAsPristine();
+    } else {
+      this.dialog.open(DateWarningDialogComponent);
+    }
   }
 
   openUsersDialog = () => {

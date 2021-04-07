@@ -22,6 +22,8 @@ import { EventFormComponent } from './event-form/event-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { MatSelectModule} from '@angular/material/select';
 import { MatCardModule} from '@angular/material/card';
+import { DateWarningDialogComponent } from './date-warning-dialog/date-warning-dialog.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { MatCardModule} from '@angular/material/card';
     NewUserComponent,
     SchedulerComponent,
     ScheduleContainerComponent,
-    EventFormComponent
+    EventFormComponent,
+    DateWarningDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,7 @@ import { MatCardModule} from '@angular/material/card';
     MatSelectModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
